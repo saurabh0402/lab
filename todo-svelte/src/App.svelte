@@ -1,7 +1,9 @@
 <script>
   import uuid from 'uuid-v4';
+  import AddTodo from './components/Todo-form.svelte';
+  import Item from './components/Todo-item.svelte';
+  import Fallback from './components/Fallback.svelte';
 
-  let newTodo = '';
   $: todos = [];
 
   function toggleTask(id) {
@@ -17,7 +19,7 @@
     });
   }
 
-  function addToDo() {
+  function addToDo(newTodo) {
     todos = [
       ...todos,
       {
@@ -26,30 +28,16 @@
         done: false,
       },
     ];
-
-    newTodo = '';
   }
 </script>
 
-<div>
-  <input type="text" bind:value={newTodo} placeholder="I want to do this" />
-  <button on:click|preventDefault={addToDo}>Add To Do</button>
+<div class="container">
+  <AddTodo addTodo={addToDo} />
+  {#if !todos.length}
+    <Fallback />
+  {:else}
+    {#each todos as todo}
+      <Item {todo} {toggleTask} />
+    {/each}
+  {/if}
 </div>
-{#if !todos.length}
-  <h3>Let's do something awesome!</h3>
-{:else}
-  {#each todos as todo}
-    <div
-      class={todo.done ? 'done' : 'pending'}
-      on:click={() => toggleTask(todo.id)}
-    >
-      {todo.text}
-    </div>
-  {/each}
-{/if}
-
-<style>
-  .done {
-    text-decoration: line-through;
-  }
-</style>
