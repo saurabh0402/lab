@@ -15,6 +15,9 @@
     "webpack-dev-server": "^4.1.1"
   },
   "dependencies": {
+    "css-loader": "^6.2.0",
+    "mini-css-extract-plugin": "^2.2.2",
+    "svelte-material-ui": "^4.2.0",
     "uuid-v4": "^0.1.0"
   }
 }

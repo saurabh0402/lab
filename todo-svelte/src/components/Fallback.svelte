@@ -1,1 +1,7 @@
-<h3>Let's do something awesome!</h3>
+<div class="fallback-text">Let's do something great.</div>
+
+<style>
+  .fallback-text {
+    font-size: 2rem;
+  }
+</style>

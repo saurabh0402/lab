@@ -1,4 +1,5 @@
 const path = require('path');
+const SomePlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   mode: 'development',
@@ -8,7 +9,11 @@ module.exports = {
     filename: 'build.js',
   },
   resolve: {
-    extensions: ['.js', '.svelte'],
+    // Important to run svelte-material-ui
+    alias: { svelte: path.dirname(require.resolve('svelte/package.json')) },
+    extensions: ['.js', '.svelte', '.mjs'],
+    // Super important line to make UI libraries work
+    mainFields: ['svelte', 'browser', 'module', 'main'],
   },
   devServer: {
     port: 8080,
@@ -34,6 +39,11 @@ module.exports = {
           fullySpecified: false,
         },
       },
+      {
+        test: /\.css$/,
+        use: [SomePlugin.loader, 'css-loader'],
+      },
     ],
   },
+  plugins: [new SomePlugin()],
 };
