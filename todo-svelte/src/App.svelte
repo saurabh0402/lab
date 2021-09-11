@@ -2,7 +2,7 @@
   import 'svelte-material-ui/bare.css';
   import uuid from 'uuid-v4';
   import AddTodo from './components/Todo-form.svelte';
-  import Item from './components/Todo-item.svelte';
+  import TodoList from './components/Item-list.svelte';
   import Fallback from './components/Fallback.svelte';
 
   $: todos = [];
@@ -30,6 +30,10 @@
       },
     ];
   }
+
+  function deleteTask(id) {
+    todos = todos.filter((todo) => todo.id !== id);
+  }
 </script>
 
 <div class="container">
@@ -40,9 +44,18 @@
     {#if !todos.length}
       <Fallback />
     {:else}
-      {#each todos as todo}
-        <Item {todo} {toggleTask} />
-      {/each}
+      <TodoList
+        {toggleTask}
+        {deleteTask}
+        list={todos.filter((todo) => !todo.done)}
+      />
+      <TodoList
+        {toggleTask}
+        {deleteTask}
+        list={todos.filter((todo) => todo.done)}
+        title="DONE"
+        fallbackTitle="Nothing Done yet 😢"
+      />
     {/if}
   </div>
 </div>
