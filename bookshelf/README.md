@@ -9,3 +9,9 @@ I will be trying to add the following to the app:
 - [ ] A new book details screen that we get to on clicking the book
 - [ ] The new page should display all the details of the book
 - [ ] Tabs in the info page showing details, user thoughts, quotes, etc.
+
+## Color Scheme
+- 261C2C
+- 3E2C41
+- 5C527F
+- 6E85B2
