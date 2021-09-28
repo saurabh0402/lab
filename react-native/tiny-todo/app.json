@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "bookshelf",
-    "slug": "bookshelf",
+    "name": "tiny-todo",
+    "slug": "tiny-todo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
