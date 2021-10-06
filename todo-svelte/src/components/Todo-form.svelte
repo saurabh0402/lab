@@ -27,9 +27,9 @@
         style="width: 100%"
       />
     </div>
-    <Button on:click={handleTodo} color="secondary" variant="unelevated"
-      >Add To Do</Button
-    >
+    <Button on:click={handleTodo} color="secondary" variant="unelevated">
+      Add To Do
+    </Button>
   </Card>
 </div>
 
