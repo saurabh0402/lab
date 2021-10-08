@@ -7,3 +7,5 @@ This repository contains all trying/testing code that I write - basically all co
 - [React Native](./react-native)
   - [Tiny todo](./react-native/tiny-todo)
   - [Guess the Number](./react-native/guess-the-number)
+- [Django](./django)
+  - [Study Bud](./django/studybud)
