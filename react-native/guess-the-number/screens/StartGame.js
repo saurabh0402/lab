@@ -39,7 +39,7 @@ function StartGameScreen(props) {
       {
         text: 'Yes',
         style: 'default',
-        onPress: () => console.log('CONFIRMED'),
+        onPress: () => props.startGame(parsedNumber),
       },
     ]);
   }
