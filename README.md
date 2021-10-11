@@ -9,6 +9,6 @@ This repository contains all trying/testing code that I write - basically all co
   - [Tiny todo](./react-native/tiny-todo)
   - [Guess the Number](./react-native/guess-the-number)
 - [JS](./js)
-  - [Proxies](./js/proxies)
+  - [Something New](./js/something-new)
 - [Python](./python)
   - [Impractical Python](./python/impractical-projects)
