@@ -2,7 +2,7 @@
 Finds all the two-word palingrams from the list of words and prints them.
 """
 
-import load_dictionary
+from ..helpers import load_dictionary
 
 def find_palingrams():
     """
