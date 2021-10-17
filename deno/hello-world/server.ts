@@ -36,6 +36,10 @@ class Server {
   get(path: string, handler: RequestHandler) {
     this.urlHandler[`get-${path.toLowerCase()}`] = handler;
   }
+
+  post(path: string, handler: RequestHandler) {
+    this.urlHandler[`post-${path.toLowerCase()}`] = handler;
+  }
 }
 
 export default Server;

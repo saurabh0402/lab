@@ -8,4 +8,13 @@ app.get('/hello', (req: Deno.RequestEvent) => {
   }));
 });
 
+app.post('/login', async (req: Deno.RequestEvent) => {
+  const reqBody = await req.request.json();
+  req.respondWith(new Response(JSON.stringify({
+    body: reqBody,
+  }), {
+    status: 200,
+  }));
+});
+
 await app.listen(8080);
