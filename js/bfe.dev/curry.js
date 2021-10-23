@@ -15,6 +15,9 @@ function curry(f, currentArgs = []) {
   };
 }
 
-console.log(curriedSum(1, 2, 3, 4));
-console.log(curriedSum(1)(2, 3, 4));
-console.log(curriedSum(1, 2)(3, 4));
+if (require.main === module) {
+  const curriedSum = curry((a, b, c, d) => a + b + c + d);
+  console.log(curriedSum(1, 2, 3, 4));
+  console.log(curriedSum(1)(2, 3, 4));
+  console.log(curriedSum(1, 2)(3, 4));
+}

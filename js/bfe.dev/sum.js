@@ -13,5 +13,7 @@ function sum(num) {
   return foo;
 }
 
-console.log(sum(10) == 10);
-console.log(sum(1)(2)(3) == 6);
+if (require.main === module) {
+  console.log(sum(10) == 10);
+  console.log(sum(1)(2)(3) == 6);
+}
