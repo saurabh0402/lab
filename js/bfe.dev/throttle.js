@@ -21,7 +21,7 @@ function throttle(func, wait) {
   return function(...args) {
     swalloedArgs = args;
     if (!throttled) {
-        afterThrottleHandler();
+      afterThrottleHandler();
     }
   }
 }

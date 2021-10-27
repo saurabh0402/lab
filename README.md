@@ -10,5 +10,6 @@ This repository contains all trying/testing code that I write - basically all co
   - [Guess the Number](./react-native/guess-the-number)
 - [JS](./js)
   - [Something New](./js/something-new)
+  - [bfe.dev](./js/bfe.dev)
 - [Python](./python)
   - [Impractical Python](./python/impractical-projects)
