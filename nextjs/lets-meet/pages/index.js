@@ -1,23 +1,17 @@
-import MeetupList from "../components/meetups/MeetupList";
+import { Fragment } from 'react';
+import { MongoClient } from 'mongodb';
+import Head from 'next/head';
 
-const MEETUPS = [
-  {
-    id: 1,
-    image: 'https://images.ctfassets.net/hspc7zpa5cvq/2R4dw4464nMTeqnZs4DemF/deb48860f73cb5228fe4fc7c293fbad4/JSConf_US.png',
-    title: 'JS Conf',
-    address: 'Carlsbad, CA',
-  },
-  {
-    id: 2,
-    image: 'https://res.cloudinary.com/practicaldev/image/fetch/s--8DZt4NEW--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://thepracticaldev.s3.amazonaws.com/i/j3b9qv0qq35a7s8on0dn.png',
-    title: 'React Conf',
-    address: 'Somewhere in world',
-  },
-];
+import MeetupList from "../components/meetups/MeetupList";
 
 function Home(props){
   return (
-    <MeetupList meetups={props.meetups} />
+    <Fragment>
+      <Head>
+        <title>Let's Meet - All meetups</title>
+      </Head>
+      <MeetupList meetups={props.meetups} />
+    </Fragment>
   );
 }
 
@@ -40,9 +34,20 @@ export async function getStaticProps() {
   // This is called during build process, and the data is "cached".
   // revalidate property tells it to refetch data after given seconds
 
+  const client = await MongoClient.connect(process.env.DB_STRING);
+  const meetupsCollection = client.db().collection('meetups');
+
+  const meetups = await meetupsCollection.find().toArray();
+
+  client.close();
   return {
     props: {
-      meetups: MEETUPS,
+      meetups: meetups.map(meetup => ({
+        title: meetup.title,
+        image: meetup.image,
+        address: meetup.address,
+        id: meetup._id.toString(),
+      })),
     },
     revalidate: 3600,
   };

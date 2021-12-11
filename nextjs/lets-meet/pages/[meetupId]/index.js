@@ -1,23 +1,21 @@
+import { Fragment } from 'react';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { MongoClient, ObjectId } from 'mongodb';
 
 import MeetupDetails from '../../components/meetups/MeetupDetails';
-
-const MEETUP = {
-  id: 1,
-  image: 'https://images.ctfassets.net/hspc7zpa5cvq/2R4dw4464nMTeqnZs4DemF/deb48860f73cb5228fe4fc7c293fbad4/JSConf_US.png',
-  title: 'JS Conf',
-  address: 'Carlsbad, CA',
-  description: 'An awesone conference about all things JavaScript',
-};
 
 function Details(props) {
   const router = useRouter();
   const meetupId = router.query.meetupId;
 
-  console.log(meetupId);
-
   return (
-    <MeetupDetails {...props.meetup} />
+    <Fragment>
+      <Head>
+        <title>Meetup details - {props.meetup.title}</title>
+      </Head>
+      <MeetupDetails {...props.meetup} />
+    </Fragment>
   )
 }
 
@@ -25,26 +23,42 @@ export async function getStaticPaths() {
   // Must be used when we have getStaticProps in a dynamic page
   // This should return all the dynamic paths so that static pages can be generated for all of them.
 
-  // This will normally not be hardcoded but generated after fetching data from some DB.
+  const client = await MongoClient.connect(process.env.DB_STRING);
+  const meetupsCollection = client.db().collection('meetups');
 
+  const meetups = await meetupsCollection.find({}, {
+    _id: 1,
+  }).toArray();
+
+  client.close();
   return {
-    paths: [
-      {
-        params: {
-          meetupId: '1',
-        },
+    paths: meetups.map(meetup => ({
+      params: {
+        meetupId: meetup._id.toString(),
       }
-    ],
-    fallback: false,
+    })),
+    fallback: 'blocking',
   };
 }
 
 export async function getStaticProps(context) {
+  const client = await MongoClient.connect(process.env.DB_STRING);
+  const meetupsCollection = client.db().collection('meetups');
+
+  const meetup = await meetupsCollection.findOne({
+    _id: new ObjectId(context.params.meetupId),
+  });
+
+  client.close();
+
   return {
     props: {
       meetup: {
-        ...MEETUP,
-        id: context.params.meetupId,
+        title: meetup.title,
+        address: meetup.address,
+        description: meetup.description,
+        image: meetup.image,
+        id: meetup._id.toString(),
       },
     },
   };
