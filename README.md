@@ -13,3 +13,5 @@ This repository contains all trying/testing code that I write - basically all co
 - [Next.js](./nextjs)
   - [Hello World](./nextjs/hello-world)
   - [Let's Meet](./nextjs/lets-meet)
+- [Three JS](./threejs)
+  - [3D Character](./threejs/3d-character)
