@@ -31,26 +31,26 @@ class Figure {
     head.position.y = 1.65;
   }
 
-  createHands() {
+  createHand(xDir = 1) {
     const geometry = new THREE.BoxGeometry(0.25, 1.5, 0.25);
 
-    const hand1 = new THREE.Mesh(geometry, this.params.material);
-    const hand2 = new THREE.Mesh(geometry, this.params.material);
+    const hand = new THREE.Mesh(geometry, this.params.material);
+    hand.position.y = -0.5;
 
-    hand1.position.x = 0.8;
-    hand1.position.y = 0.1;
+    const handGroup = new THREE.Group();
+    handGroup.position.x = 0.8 * xDir;
+    handGroup.position.y = 0.6;
+    handGroup.rotation.z = degreeToRadian(30 * xDir);
 
-    hand2.position.x = -0.8;
-    hand2.position.y = 0.1;
-
-    this.group.add(hand1);
-    this.group.add(hand2);
+    handGroup.add(hand);
+    this.group.add(handGroup);
   }
 
   init(material) {
     this.createBody();
     this.createHead();
-    this.createHands();
+    this.createHand();
+    this.createHand(-1);
   }
 }
 
