@@ -1,0 +1,2 @@
+# Better Movie 🎥
+A simple web app created using NextJS in which the user is prompted with two movies and has to select the better one. The votes are thus calculated and the user can see which movie has been rated as the best.
