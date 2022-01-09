@@ -1,0 +1,36 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0f292e;
+  color: #ffffff;
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.container {
+  height: 150vh;
+}
+
+img {
+  display: block;
+}
+
+.lines {
+  position: fixed;
+  top: -100px;
+  left: 0px;
+  z-index: -100;
+}
+
+.header {
+  font-size: 1.5rem;
+  padding: 0.3rem;
+  text-align: center;
+  font-weight: bold;
+  position: fixed;
+  width: 100vw;
+  left: 0px;
+}
