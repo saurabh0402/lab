@@ -17,3 +17,5 @@ This repository contains all trying/testing code that I write - basically all co
   - [3D Character](./threejs/3d-character)
 - [RabbitMQ](./rabbitmq)
   - [Hello World](./rabbitmq/hello-world)
+- [Rust]
+  - [Hello World](./rust/hello-world)
