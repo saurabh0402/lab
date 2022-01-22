@@ -18,4 +18,4 @@ This repository contains all trying/testing code that I write - basically all co
 - [RabbitMQ](./rabbitmq)
   - [Hello World](./rabbitmq/hello-world)
 - [Rust](./rust)
-  - [Hello World](./rust/hello-world)
+  - [Basics](./rust/basics)
