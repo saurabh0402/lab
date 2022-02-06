@@ -1,7 +1,21 @@
-#[derive(Debug)]
 enum Identity {
   Passport(u32),
   Aadhaar(String),
+}
+
+impl std::fmt::Display for Identity {
+  fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    match self {
+      Identity::Passport(id) => {
+        write!(f, "Passport ID - {}", id);
+      },
+      Identity::Aadhaar(id) => {
+        write!(f, "Aadhaar ID - {}", id);
+      }
+    }
+
+    write!(f, "Not Found!")
+  }
 }
 
 struct Person {
@@ -15,7 +29,7 @@ struct Animal (String, u32);
 
 impl Person {
   fn print(&self) {
-    println!("{} {} - {} - {:?}", self.name, self.last_name, self.age, self.id);
+    println!("{} {} - {} - {}", self.name, self.last_name, self.age, self.id);
   }
 }
 
